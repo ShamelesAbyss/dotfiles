@@ -46,6 +46,10 @@ abyss_run() {
 
   echo
 
+  if command -v pokemon-colorscripts >/dev/null 2>&1; then
+    pokemon-colorscripts --random --no-title
+  fi
+
   if command -v fastfetch >/dev/null 2>&1; then
     fastfetch
   fi
