@@ -36,8 +36,22 @@ zstyle ':vcs_info:git:*' formats ' (%b)'
 
 PROMPT='%F{45}%n@%m%f:%F{118}%~%f%F{213}${vcs_info_msg_0_}%f %# '
 
-alias abyss="$HOME/.config/shamelesabyss/banner.sh"
+# Abyss launcher
+abyss_run() {
+  clear
 
-if [ -x "$HOME/.config/shamelesabyss/banner.sh" ]; then
-  "$HOME/.config/shamelesabyss/banner.sh"
-fi
+  if [ -x "$HOME/.config/shamelesabyss/banner.sh" ]; then
+    "$HOME/.config/shamelesabyss/banner.sh"
+  fi
+
+  echo
+
+  if command -v fastfetch >/dev/null 2>&1; then
+    fastfetch
+  fi
+}
+
+alias abyss="abyss_run"
+
+# Auto-run on interactive shell startup
+abyss_run
