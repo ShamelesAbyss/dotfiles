@@ -37,7 +37,7 @@ zstyle ':vcs_info:git:*' formats ' (%b)'
 PROMPT='%F{45}%n@%m%f:%F{118}%~%f%F{213}${vcs_info_msg_0_}%f %# '
 
 # Abyss launcher
-abyss_run() {
+abyss_core() {
   clear
 
   if [ -x "$HOME/.config/shamelesabyss/banner.sh" ]; then
@@ -45,6 +45,10 @@ abyss_run() {
   fi
 
   echo
+}
+
+abyss_run() {
+  abyss_core
 
   if command -v pokemon-colorscripts >/dev/null 2>&1; then
     pokemon-colorscripts --random --no-title
@@ -55,7 +59,15 @@ abyss_run() {
   fi
 }
 
+abyss_startup() {
+  abyss_core
+
+  if command -v fastfetch >/dev/null 2>&1; then
+    fastfetch
+  fi
+}
+
 alias abyss="abyss_run"
 
-# Auto-run on interactive shell startup
-abyss_run
+# Auto-run compact startup
+abyss_startup
